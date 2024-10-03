@@ -34,7 +34,7 @@ async def user_by_id(db: Annotated[Session, Depends(get_db)], user_id: int):
 
 @router.post('/create')
 async def create_user(db: Annotated[Session, Depends(get_db)], new_user: CreateUser):
-    user = db.scalar(select(User).where(User.username == new_user.username))
+    user = db.scalar(select(User).where(User.slug == new_user.username))
     if user is not None:
         return HTTPException(
             status_code=status.HTTP_409_CONFLICT,
