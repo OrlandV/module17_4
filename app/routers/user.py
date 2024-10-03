@@ -16,7 +16,7 @@ async def all_users(db: Annotated[Session, Depends(get_db)]):
     if len(users) == 0:
         return HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail='Users were not found.'
+            detail='Users not found.'
         )
     return users
 
